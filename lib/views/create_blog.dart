@@ -18,7 +18,8 @@ class CreateBlog extends StatefulWidget {
 class _CreateBlogState extends State<CreateBlog> {
   String? authorName, title, desc;
 
-  late File selectedImage;
+  late File selectedImage = File("/PHOTO.jpg");
+  // var selectedImage;
   CrudMethods crudMethods = new CrudMethods();
   ImagePicker imagePicker = ImagePicker();
 
@@ -68,15 +69,27 @@ class _CreateBlogState extends State<CreateBlog> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              height: 150,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
-              width: MediaQuery.of(context).size.width,
-              child: Icon(
-                Icons.add_a_photo,
-                color: Colors.black45,
+            GestureDetector(
+              onTap: () {
+                getImage();
+              },
+              child: selectedImage != (null) ? Container(
+                //  child: Image.file(selectedImage),
+                 margin: EdgeInsets.symmetric(horizontal: 10),
+                height: 150,
+                width: MediaQuery.of(context).size.width,
+                child: Image.file(selectedImage),
+
+              ) : Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                height: 150,
+                decoration: BoxDecoration(
+                    color: Colors.white, borderRadius: BorderRadius.circular(6)),
+                width: MediaQuery.of(context).size.width,
+                child: Icon(
+                  Icons.add_a_photo,
+                  color: Colors.black45,
+                ),
               ),
             ),
             SizedBox(
